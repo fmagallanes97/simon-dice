@@ -16,26 +16,12 @@ Array.prototype.random = function(){
     return this[Math.floor(Math.random() * this.length)];
 }
 
-function getColorsOrder(length){
-    const order = [];
-
-    for(let i=0; i < length; i++){
-        order.push(COLORS.random());
-    }
-    
-    return order;
-}
-
-function resetComputer(){
-    computer.level = 1;
-    computer.order.length = 0;
-}
-
 function resetGame(){
     user.turn = false;
     user.order.length = 0;
+    computer.level = 1;
+    computer.order.length = 0;
     $play.disabled = false;
-    resetComputer();
     disableGamePanel();
 }
 
@@ -68,7 +54,7 @@ function manageGames(){
 
 function runComputerGame(){
     user.turn = true;
-    computer.order = getColorsOrder(computer.level);
+    computer.order.push(COLORS.random());
 
     disableGamePanel();
 
