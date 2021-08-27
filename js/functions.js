@@ -43,7 +43,7 @@ function manageGames(){
     const i = user.order.length-1;
     const isGameOver = user.order[i] !== computer.order[i];
     const isLevelUp = (user.order.length === computer.order.length) && user.order.length > 0;
-    const isGameWin = computer.level === 11;
+    const isGameWin = computer.level === 10 && user.order.length === 10;
     const isWaitingForUser = user.order.length > 0;
 
     updateProgressBar(computer.level, {isGameOver, isGameWin});
@@ -52,13 +52,13 @@ function manageGames(){
         resetGame();
         createToastNotification('game-over-notification', 'Ese no fue el color elegido✋😓');
         return;
-    }else if(isLevelUp){
-        computer.level++;
-        user.order.length = 0;
     }else if(isGameWin){
         resetGame();
         createToastNotification('game-win-notification', 'Alcanzaste el nivel 10 locura!!!🤯🤯');
         return;
+    }else if(isLevelUp){
+        computer.level++;
+        user.order.length = 0;
     }else if(isWaitingForUser){  
         return;
     }
