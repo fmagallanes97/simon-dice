@@ -1,0 +1,175 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #293b5f;
+    background: #396afc; 
+    font-family: 'IBM Plex Mono', monospace;
+    overflow: hidden;
+}
+
+button {
+    border-style:none;
+}
+
+#title {
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    color: #fcf8e8;
+}
+
+#btn-play {
+    grid-area: btn-play;
+    display: block;
+    margin: 0 auto;
+    padding: 4px;
+    width: 100px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    background: #fcf8e8;
+    color: #293b5f;
+    border-radius: 7px;
+    box-shadow: 0px -4px 0px 0px #E2DFD0 inset, 0px 4px 1px 2px rgb(0 0 0 / 20%);
+    transition: .1s;
+}
+
+#btn-play:disabled,
+#btn-play[disabled]{
+  transform: translateY(2.5px);
+  box-shadow: 0px -6px 0px 0px #E2DFD0 inset, 0px 3px 0px 1px rgb(0 0 0 / 20%);
+  transition: .1s;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    gap: 50px;
+    min-height: 100vh;
+    grid-template-areas: 
+        "title"
+        "simon-game"
+        "btn-play";
+}
+
+.panel {
+    border-radius: 20px;
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+#btn-red {
+    grid-area: btn-red;
+    background: #F86828;
+    box-shadow: 0px -4px 0px 0px #7f2a04 inset, 0px 4px 1px 2px rgb(0 0 0 / 20%);
+}
+
+#btn-green {
+    grid-area: btn-green;
+    background: #92C51A;
+    box-shadow: 0px -4px 0px 0px #526e0f inset, 0px 4px 1px 2px rgb(0 0 0 / 20%);
+}
+
+#btn-blue {
+    grid-area: btn-blue;
+    background: #00b5f1;
+    box-shadow: 0px -4px 0px 0px #005d7b inset, 0px 4px 1px 2px rgb(0 0 0 / 20%);
+}
+
+#btn-yellow {
+    grid-area: btn-yellow;
+    background: #FFC42B;
+    box-shadow: 0px -4px 0px 0px #795800 inset, 0px 4px 1px 2px rgb(0 0 0 / 20%);
+}
+
+#simon-game {
+    grid-area: simon-game;
+    display: grid;
+    grid-template-areas: 
+    "btn-red  btn-green"
+    "btn-blue btn-yellow";
+}
+
+#container-notifications {
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    width: 100%;
+    top: 5%;
+
+}
+
+.toast {
+    position: relative;
+    font-size: 1.2rem;
+    background: #fcf8e8;
+    padding: 30px;
+    width: max-content;
+    border-radius: 10px;
+    margin: 10px 30px;
+    box-shadow: 0px -4px 0px 0px #E2DFD0 inset, 0px 4px 1px 2px rgb(0 0 0 / 20%);
+    transform: translateX(300px);
+}
+
+#progress-bar::before {
+    position: absolute;
+    display: flex;
+    content: '';
+    left: 0.8em;
+    bottom: 1em;
+    width: calc(var(--width, 0) * 1%);
+    height: 4px;
+    min-width: 0;
+    max-width: calc(100% - 1.7em);
+    border-radius: 1px;
+    background: #000;
+    background: linear-gradient(90deg, rgba(248,104,40,1) 0%, rgba(146,197,26,1) 30%, rgba(0,181,241,1) 60%, rgba(255,196,43,1) 100%);
+    transition: 0.3s;
+}
+
+.animate-border-panel {
+    animation-name: border;
+    animation-duration: .3s;
+    transition: ease-in-out;
+}
+
+@keyframes border {
+    0%  { border-radius: 20px }
+    50% { border-radius: 50% }
+    100% { border-radius: 20px }
+}
+
+.animate-slide-in-toast {
+    animation: slide-in 0.3s both;
+}
+
+.animate-slide-out-toast {
+    animation: slide-out 0.3s both;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(500px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(500px);
+    }
+}
